@@ -1,5 +1,5 @@
 ## Interface: 70100
-## Title: MonkUI
+## Title: HolyUI
 ## Notes: Mierihn is gay
 ## Author: Gay
 ## Version: v0.1

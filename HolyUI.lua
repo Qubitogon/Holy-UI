@@ -194,8 +194,13 @@ tempF:SetScript("OnEvent",function()
     local function checkTalentStuff()
 
       local _,_,_,halo = GetTalentInfo(6,3,1)
+      local _,_,_,ds = GetTalentInfo(6,2,1)
+      local _,_,_,hws = GetTalentInfo(7,3,1)
 
       if halo then HUI.halo:Show(); HUI.halo:onCast() else HUI.halo:Hide() end 
+      if ds then HUI.ds:Show(); HUI.ds:onCast() else HUI.ds:Hide() end
+      if hws then HUI.hws:Show(); HUI.hws:onCast() else HUI.hws:Hide() end
+
       
     end
 
@@ -480,7 +485,7 @@ tempF:SetScript("OnEvent",function()
     end
 
     
-    --things to do on PAYER_ENTERING_WORLD
+    --things to do on PLAYER_ENTERING_WORLD
     checkTalentStuff()
     fOnShow()
     checkSpecialization()
