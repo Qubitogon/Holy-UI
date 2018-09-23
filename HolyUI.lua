@@ -196,11 +196,13 @@ tempF:SetScript("OnEvent",function()
       local _,_,_,halo = GetTalentInfo(6,3,1)
       local _,_,_,ds = GetTalentInfo(6,2,1)
       local _,_,_,hws = GetTalentInfo(7,3,1)
+      local _,_,_,apo = GetTalentInfo(7,2,1)
+
 
       if halo then HUI.halo:Show(); HUI.halo:onCast() else HUI.halo:Hide() end 
       if ds then HUI.ds:Show(); HUI.ds:onCast() else HUI.ds:Hide() end
       if hws then HUI.hws:Show(); HUI.hws:onCast() else HUI.hws:Hide() end
-
+      if apo then HUI.apo:Show(); HUI.apo:onCast() else HUI.apo:Hide() end
       
     end
 
@@ -276,6 +278,7 @@ tempF:SetScript("OnEvent",function()
        if spell then afterDo(0,function() spell:onCast();  end) end
        if id==34861 or id==2050 then afterDo(0,function() port[265202]:onCast() end)
        else afterDo(0,function() port[34861]:onCast(); port[2050]:onCast() end) end
+       if id==47788 then afterDo(11,function() port[47788]:onCast() end) end
       end
       
     end
@@ -374,6 +377,10 @@ tempF:SetScript("OnEvent",function()
     HUI.hws=createCDIcon(265202,"med",false)
     HUI.hws:SetPoint("TOPLEFT",HUI.sanc,"BOTTOMLEFT",0,-1)
     HUI.hws.onCast=HUI.onCast1
+    
+    HUI.apo=createCDIcon(200183,"med",false)
+    HUI.apo:SetPoint("TOPLEFT",HUI.sanc,"BOTTOMLEFT",0,-1)
+    HUI.apo.onCast=HUI.onCast1
     
     HUI.dh=createCDIcon(64843,"med",false)
     HUI.dh:SetPoint("TOP",HUI.hws,"BOTTOM",0,-1)
