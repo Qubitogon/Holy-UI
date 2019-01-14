@@ -265,6 +265,8 @@ tempF:SetScript("OnEvent",function()
       
     end
     
+    local currentHaste=0
+    local hasteSpells={33076}
     HUI.eventHandler = function(self,event,_,tar,id,id2)
       if not self.loaded then return end
       if event=="UNIT_HEALTH_FREQUENT" then
@@ -279,6 +281,16 @@ tempF:SetScript("OnEvent",function()
        if id==34861 or id==2050 then afterDo(0,function() port[265202]:onCast() end)
        else afterDo(0,function() port[34861]:onCast(); port[2050]:onCast() end) end
        if id==47788 then afterDo(11,function() port[47788]:onCast() end) end
+       
+      elseif event=="UNIT_SPELL_HASTE" then
+        local haste=UnitSpellHaste("player")
+        if haste==currentHaste then return end
+        currentHaste=haste
+        for i=1,#hasteSpells do 
+          local spell=port[hasteSpells[i]]
+          afterDo(0,function() spell:onCast();  end)   
+        end 
+       
       end
       
     end
@@ -290,6 +302,7 @@ tempF:SetScript("OnEvent",function()
     do
     f:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
     f:RegisterUnitEvent("UNIT_POWER_UPDATE","player")
+    f:RegisterUnitEvent("UNIT_SPELL_HASTE","player")
     f:RegisterUnitEvent("UNIT_HEALTH_FREQUENT","player")
     f:SetScript("OnEvent",HUI.eventHandler)
     f:SetScript("OnShow",fOnShow)
