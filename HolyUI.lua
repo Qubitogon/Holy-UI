@@ -509,8 +509,13 @@ tempF:SetScript("OnEvent",function()
     checkTalentStuff()
     fOnShow()
     checkSpecialization()
-    if playerName=="Monogon" then afterDo(0,function() HUI.f:SetPoint("TOPRIGHT",_eFGlobal.units,"TOPLEFT",-2,0) end) end
-    --HUI.f:SetPoint("CENTER",UIParent,"CENTER")
+    if playerName=="Monogon" then 
+        if _eFGlobal then --eF1
+            afterDo(0,function() DUI.f:SetPoint("TOPRIGHT",_eFGlobal.units,"TOPLEFT",-2,0) end) 
+        elseif elFramoGlobal then --eF2
+            afterDo(0,function() DUI.f:SetPoint("TOPRIGHT",UIParent,"BOTTOMLEFT",elFramoGlobal.units.xPos-2,elFramoGlobal.units.yPos) end) 
+        end
+    end      --HUI.f:SetPoint("CENTER",UIParent,"CENTER")
     checkCombat()
   end
 end)
